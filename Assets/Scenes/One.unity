@@ -415,9 +415,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1911630973}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c70344b8ffbd46349b652cdd79227519, type: 3}
+  m_Script: {fileID: 11500000, guid: f6d3ccab0aaa12b4cbc62a284ca802d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SquarePreset: {fileID: 2587538247020418451, guid: 633565764860c9c45ac35fad48818cf4,
+    type: 3}
+  SquarePrefab: {fileID: 1784237281802515256, guid: 1b312f73dc47eee4fb64a17c17908e12,
+    type: 3}
   Knight_1: {fileID: 7757361158436435125, guid: 98e12ef141194d74397b96ff0e96eab8,
     type: 3}
   Pawn_1: {fileID: 5101255152494452282, guid: b1e272680a0976f448a47e5e1f6b57b1, type: 3}

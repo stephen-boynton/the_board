@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour {
-
     private const float TILE_SIZE = 1.0f;
     private const float TILE_OFFSET = 0.5f;
-
     private int selectionX = -1;
     private int selectionY = -1;
+    private float HEIGHT_SIZE = 0.3f;
 
     [SerializeField] GameObject SquarePreset;
     [SerializeField] GameObject SquarePrefab;
@@ -27,7 +26,8 @@ public class BoardManager : MonoBehaviour {
 
     private void Start () {
         Init ();
-        // SpawnAllPieces ();
+        SpawnAllTiles ();
+        SpawnAllPieces ();
     }
 
     private void Update () {
@@ -56,7 +56,9 @@ public class BoardManager : MonoBehaviour {
     }
 
     private void SpawnPiece (Piece piece, int x, int y) {
-        Piece go = Instantiate (piece, GetTileCenter (x, y), Quaternion.identity) as Piece;
+        Vector3 center = GetTileCenter (x, y);
+        center.y = HEIGHT_SIZE;
+        Piece go = Instantiate (piece, center, Quaternion.identity) as Piece;
         go.transform.SetParent (transform);
     }
 
@@ -94,14 +96,16 @@ public class BoardManager : MonoBehaviour {
     }
 
     private void SpawnAllTiles () {
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = 0; j < size - 1; j++) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 Vector3 center = GetTileCenter (i, j);
-                GameObject goS = Instantiate (SquarePreset, center, Quaternion.identity);
+                GameObject goS = Instantiate (SquarePrefab, center, Quaternion.identity);
                 Square s = goS.AddComponent<Square> ();
-                s.prefab = SquarePrefab;
-                s.
-                new Vector2 (center.x, center.z), 0, new PositionId (i, j),
+                s.coordinates = new Vector2 (center.x, center.z);
+                s.height = 0;
+                s.positionId = new PositionId (i, j);
+                Squares[i, j] = s;
+                goS.transform.parent = this.transform.parent;
             }
         }
     }

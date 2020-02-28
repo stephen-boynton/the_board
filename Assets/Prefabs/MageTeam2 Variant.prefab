@@ -7,10 +7,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1875236226707496752, guid: 44615eda174eb534eada761a7da24117,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 47f732de991f2f04eaad870e8f8f9b4f, type: 2}
     - target: {fileID: 4872484458022279090, guid: 44615eda174eb534eada761a7da24117,
         type: 3}
       propertyPath: m_Name
-      value: MageTeam2
+      value: MageTeam2 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4959829016946826430, guid: 44615eda174eb534eada761a7da24117,
         type: 3}
@@ -40,7 +45,7 @@ PrefabInstance:
     - target: {fileID: 7067519632255025575, guid: 44615eda174eb534eada761a7da24117,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.00000008742278
       objectReference: {fileID: 0}
     - target: {fileID: 7067519632255025575, guid: 44615eda174eb534eada761a7da24117,
         type: 3}
@@ -50,7 +55,7 @@ PrefabInstance:
     - target: {fileID: 7067519632255025575, guid: 44615eda174eb534eada761a7da24117,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7067519632255025575, guid: 44615eda174eb534eada761a7da24117,
         type: 3}
