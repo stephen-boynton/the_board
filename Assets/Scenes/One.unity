@@ -430,7 +430,7 @@ MonoBehaviour:
     type: 3}
   Pawn_2: {fileID: 53809053048299090, guid: 2be1d53fbb97d9c418dfcc1664fda323, type: 3}
   Mage_2: {fileID: 2921420731078819505, guid: b35a1874bad06954584fb2f9eec80f72, type: 3}
-  size: 8
+  size: 50
 --- !u!4 &1911630975
 Transform:
   m_ObjectHideFlags: 0

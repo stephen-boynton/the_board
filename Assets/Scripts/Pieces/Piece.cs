@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Piece : MonoBehaviour {
-    public int CurrentX { set; get; }
-    public int CurrentY { set; get; }
-    public bool isTeam1;
+    public PositionId location { get; set; }
 
     // public abstract void Move ();
     // public abstract void Attack ();

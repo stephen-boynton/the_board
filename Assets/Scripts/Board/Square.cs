@@ -13,7 +13,7 @@ public class Square : MonoBehaviour {
     public void ScalePrefabToSquare () {
         placeholderTile = this.transform.GetChild (0).gameObject;
         Vector3 size = placeholderTile.GetComponent<Renderer> ().bounds.size;
-        // prefab.transform.localScale = size;
+        // prefab.transform.localScale = size;     
     }
 
 }

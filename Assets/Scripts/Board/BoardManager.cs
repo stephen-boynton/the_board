@@ -11,12 +11,12 @@ public class BoardManager : MonoBehaviour {
 
     [SerializeField] GameObject SquarePreset;
     [SerializeField] GameObject SquarePrefab;
-    [SerializeField] Piece Knight_1;
-    [SerializeField] Piece Pawn_1;
-    [SerializeField] Piece Mage_1;
-    [SerializeField] Piece Knight_2;
-    [SerializeField] Piece Pawn_2;
-    [SerializeField] Piece Mage_2;
+    [SerializeField] Piece Protect_1;
+    [SerializeField] Piece Control_1;
+    [SerializeField] Piece Destroy_1;
+    [SerializeField] Piece Protect_2;
+    [SerializeField] Piece Control_2;
+    [SerializeField] Piece Destroy_2;
     [SerializeField] int size = 8;
 
     private int START_ROW = 0;
@@ -31,8 +31,8 @@ public class BoardManager : MonoBehaviour {
     }
 
     private void Update () {
-        UpdateSelection ();
         DrawChessboard ();
+        UpdateSelection ();
     }
 
     private void Init () {
@@ -46,7 +46,7 @@ public class BoardManager : MonoBehaviour {
 
         RaycastHit hit;
 
-        if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 20.0f, LayerMask.GetMask ("BoardPlane"))) {
+        if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 40.0f, LayerMask.GetMask ("BoardPlane"))) {
             selectionX = (int) hit.point.x;
             selectionY = (int) hit.point.z;
         } else {
@@ -60,32 +60,33 @@ public class BoardManager : MonoBehaviour {
         center.y = HEIGHT_SIZE;
         Piece go = Instantiate (piece, center, Quaternion.identity) as Piece;
         go.transform.SetParent (transform);
+        go.location = new PositionId (x, y);
     }
 
     private void BuildTeamOne () {
 
-        // Knight
-        SpawnPiece (Knight_1, 3, START_ROW);
+        // Protect
+        SpawnPiece (Protect_1, 3, START_ROW);
 
-        // Pawn
-        SpawnPiece (Pawn_1, 2, START_ROW);
+        // Control
+        SpawnPiece (Control_1, 2, START_ROW);
 
-        // Mage
-        SpawnPiece (Mage_1, 1, START_ROW);
+        // Destroy
+        SpawnPiece (Destroy_1, 1, START_ROW);
     }
 
     private void BuildTeamTwo () {
 
-        // Knight
-        SpawnPiece (Knight_2, 3, END_ROW);
+        // Protect
+        SpawnPiece (Protect_2, 3, END_ROW);
 
-        // Pawn
-        SpawnPiece (Pawn_2, 2, END_ROW);
+        // Control
+        SpawnPiece (Control_2, 2, END_ROW);
 
-        // Mage
-        SpawnPiece (Mage_2, 1, END_ROW);
+        // Destroy
+        SpawnPiece (Destroy_2, 1, END_ROW);
 
-        foreach (Piece p in (new List<Piece> () { Knight_2, Pawn_2, Mage_2 })) {
+        foreach (Piece p in (new List<Piece> () { Protect_2, Control_2, Destroy_2 })) {
             MyUtility.RotateGameObject (p, new Vector3 (0, 180, 0));
         }
     }
@@ -105,7 +106,7 @@ public class BoardManager : MonoBehaviour {
                 s.height = 0;
                 s.positionId = new PositionId (i, j);
                 Squares[i, j] = s;
-                goS.transform.parent = this.transform.parent;
+                goS.transform.SetParent (transform);
             }
         }
     }
