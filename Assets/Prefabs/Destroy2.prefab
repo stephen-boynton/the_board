@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 4872484458022279090, guid: 44615eda174eb534eada761a7da24117,
         type: 3}
       propertyPath: m_Name
-      value: MageTeam2 Variant
+      value: Destroy2
       objectReference: {fileID: 0}
     - target: {fileID: 4959829016946826430, guid: 44615eda174eb534eada761a7da24117,
         type: 3}

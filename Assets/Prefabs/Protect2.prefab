@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 7850249230762430477, guid: 98e12ef141194d74397b96ff0e96eab8,
         type: 3}
       propertyPath: m_Name
-      value: KnightTeam2 Variant
+      value: Protect2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98e12ef141194d74397b96ff0e96eab8, type: 3}
