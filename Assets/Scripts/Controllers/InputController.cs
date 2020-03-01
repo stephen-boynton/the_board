@@ -43,24 +43,6 @@ public class InputController : MonoBehaviour {
 
 }
 
-// private void Update () {
-//   UpdateSelection ();
-// }
-// private void UpdateSelection () {
-//   if (!Camera.main)
-//     return;
-
-//   RaycastHit hit;
-
-//   if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 40.0f, LayerMask.GetMask ("BoardPlane"))) {
-//     selectionX = (int) hit.point.x;
-//     selectionY = (int) hit.point.z;
-//   } else {
-//     selectionY = -1;
-//     selectionX = -1;
-//   }
-// }
-
 class Repeater
 {
     const float threshold = 0.5f;
