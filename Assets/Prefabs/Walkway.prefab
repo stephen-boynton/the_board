@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5675531292228993676}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walkway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8364065745635871624}
   - component: {fileID: 4616475597213182611}
   - component: {fileID: 6580706653579932412}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
