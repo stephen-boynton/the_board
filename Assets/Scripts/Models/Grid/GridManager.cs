@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
@@ -13,14 +14,21 @@ public class GridManager : MonoBehaviour
     private int START_ROW = 0;
     private int END_ROW;
 
-    private List<Cell> Cells = new List<Cell>();
+    PositionId[] dirs = new PositionId[4]
+{
+        new PositionId(0, 1),
+        new PositionId(0, -1),
+        new PositionId(1, 0),
+        new PositionId(-1, 0)
+};
 
+    public Dictionary<PositionId, Cell> Cells = new Dictionary<PositionId, Cell>();
     // SYSTEM FXS ======================================================== //
 
     private void Awake()
     {
         Init();
-        SpawnAllTiles();
+        SpawnAllCells();
     }
 
     private void Update()
@@ -55,7 +63,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    private void SpawnAllTiles()
+    private void SpawnAllCells()
     {
         for (int i = 0; i < gridSize; i++)
         {
@@ -72,7 +80,7 @@ public class GridManager : MonoBehaviour
                 cellComp.height = 0;
                 cellComp.positionId = new PositionId(i, j);
 
-                Cells.Add(cellComp);
+                Cells.Add(cellComp.positionId, cellComp);
                 cell.transform.SetParent(transform);
             }
         }
@@ -108,31 +116,47 @@ public class GridManager : MonoBehaviour
         item.transform.position = new Vector3(cell.center.x, cell.cellHeightOffset + heightOffset, cell.center.y);
     }
 
-    //public void PlaceInGrid(Vector3 loc, MonoBehaviour item)
-    //{
-    //    Cell cell = GetCellByWorldLocation(loc);
-    //    ValidateMoveableCell(cell);
-    //    cell.Occupy(item);
-    //    item.transform.position = new Vector3(cell.center.x, cell.cellHeightOffset, cell.center.y);
-    //}
+    public List<Cell> Search(Cell start, Func<Cell, Cell, bool> addCell)
+    {
+        List<Cell> retValue = new List<Cell>();
+        retValue.Add(start);
 
-    //public void PlaceInGrid(Vector2 loc, MonoBehaviour item)
-    //{
-    //    Cell cell = GetCellByRowAndColumn((int)loc.x, (int)loc.y);
-    //    ValidateMoveableCell(cell);
-    //    cell.Occupy(item);
-    //    item.transform.position = new Vector3(cell.center.x, cell.cellHeightOffset, cell.center.y);
-    //}
+        ClearSearch();
+        Queue<Cell> checkNext = new Queue<Cell>();
+        Queue<Cell> checkNow = new Queue<Cell>();
 
-    //public void PlaceInGrid(Vector2 loc, float heightOffset, MonoBehaviour item)
-    //{
-    //    Cell cell = GetCellByRowAndColumn((int)loc.x, (int)loc.y);
-    //    ValidateMoveableCell(cell);
-    //    cell.Occupy(item);
-    //    Debug.Log(item.transform.position.x);
-    //    item.transform.position = new Vector3(cell.center.x, heightOffset + cell.cellHeightOffset, cell.center.y);
-    //    Debug.Log(item.transform.position.x);
-    //}
+        start.distance = 0;
+        checkNow.Enqueue(start);
+
+        while (checkNow.Count > 0)
+        {
+            Cell c = checkNow.Dequeue();
+            for (int i = 0; i < 4; ++i)
+            {
+                Cell next = GetCell(c.positionId + dirs[i]);
+                if (next == null || next.distance <= c.distance + 1)
+                    continue;
+
+                if (addCell(c, next))
+                {
+                    next.distance = c.distance + 1;
+                    next.prev = c;
+                    checkNext.Enqueue(next);
+                    retValue.Add(next);
+                }
+            }
+
+            if (checkNow.Count == 0)
+                SwapReference(ref checkNow, ref checkNext);
+        }
+
+        return retValue;
+    }
+
+    public Cell GetCell(PositionId p)
+    {
+        return Cells.ContainsKey(p) ? Cells[p] : null;
+    }
 
     public Vector3 GetCellCenter(int x, int y)
     {
@@ -144,7 +168,7 @@ public class GridManager : MonoBehaviour
 
     public Cell GetCellByWorldLocation(Vector3 loc)
     {
-        foreach (Cell c in Cells)
+        foreach (Cell c in Cells.Values)
         {
             if (c.IsWithinBounds(new Vector2(loc.x, loc.z)))
                 return c;
@@ -154,21 +178,37 @@ public class GridManager : MonoBehaviour
 
     public Cell GetCellByPositionId(PositionId pos)
     {
-        foreach (Cell c in Cells)
+        foreach (PositionId c in Cells.Keys)
         {
-            if (c.positionId == pos)
-                return c;
+            if (c == pos)
+                return Cells[c];
         }
         return null;
     }
 
     public Cell GetCellByRowAndColumn(int row, int column)
     {
-        foreach (Cell c in Cells)
+        foreach (PositionId c in Cells.Keys)
         {
-            if (c.positionId == new PositionId(row, column))
-                return c;
+            if (c == new PositionId(row, column))
+                return Cells[c];
         }
         return null;
+    }
+
+    void ClearSearch()
+    {
+        foreach (Cell c in Cells.Values)
+        {
+            c.prev = null;
+            c.distance = int.MaxValue;
+        }
+    }
+
+    void SwapReference(ref Queue<Cell> a, ref Queue<Cell> b)
+    {
+        Queue<Cell> temp = a;
+        a = b;
+        b = temp;
     }
 }
