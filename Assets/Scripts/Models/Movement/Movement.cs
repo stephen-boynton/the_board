@@ -15,7 +15,7 @@ public abstract class Movement : MonoBehaviour
 
 
 
-    public virtual List<Cell> GetCellsInRAnge(GridManager grid)
+    public virtual List<Cell> GetCellsInRange(GridManager grid)
     {
         List<Cell> retValue = grid.Search(piece.currentCell, ExpandSearch);
         Filter(retValue);

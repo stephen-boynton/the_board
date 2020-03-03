@@ -5,14 +5,15 @@ using UnityEngine;
 public class BattleController : StateMachine
 {
   public GridManager grid;
-  [SerializeField] public CellSelector selector;
-  [SerializeField] List<Piece> TeamOne = new List<Piece>();
-  [SerializeField] List<Piece> TeamTwo = new List<Piece>();
+  [SerializeField] public GameObject selector;
+  [SerializeField] public List<GameObject> TeamOne = new List<GameObject>();
+  [SerializeField] public List<GameObject> TeamTwo = new List<GameObject>();
 
     private void Awake()
     {
         grid = GetComponentInParent<GridManager>();
-        selector = Instantiate(selector, transform);
+        selector = Instantiate(selector, transform) as GameObject;
+        TeamOne[0] = Instantiate(TeamOne[0], transform) as GameObject;
     }
 
     void Start()

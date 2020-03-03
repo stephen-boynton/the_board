@@ -6,8 +6,9 @@ public abstract class BattleState : State
 {
     protected BattleController owner;
     public Cell currentCell;
-    public CellSelector selector { get { return owner.selector; } private set { } }
+    public GameObject selector { get { return owner.selector; } private set { } }
     public GridManager grid { get { return owner.grid; } }
+    public List<GameObject> teamOne {get { return owner.TeamOne; }}
 
     protected virtual void Awake()
     {

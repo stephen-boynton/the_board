@@ -8,24 +8,24 @@ public class WalkMovement : Movement
 	protected override bool ExpandSearch(Cell from, Cell to)
 	{
 
-		// Skip if the tile is occupied by an enemy
+		// Skip if the cell is occupied by an enemy
 		if (to.occupant != null)
 			return false;
 
 		return base.ExpandSearch(from, to);
 	}
 
-	public override IEnumerator Traverse(Cell tile)
+	public override IEnumerator Traverse(Cell cell)
 	{
-		piece.Place(tile);
+		piece.currentCell = cell;
 
 		// Build a list of way points from the piece's 
-		// starting tile to the destination tile
+		// starting cell to the destination cell
 		List<Cell> targets = new List<Cell>();
-		while (tile != null)
+		while (cell != null)
 		{
-			targets.Insert(0, tile);
-			tile = tile.prev;
+			targets.Insert(0, cell);
+			cell = cell.prev;
 		}
 
 		// Move to each way point in succession
