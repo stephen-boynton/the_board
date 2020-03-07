@@ -7,6 +7,10 @@ public abstract class Piece : MonoBehaviour {
 	public Cell currentCell;
 	public Directions dir = Directions.North;
 	public float offset;
+	public virtual int CTR { get; protected set; }
+	public virtual int SPEED { get; protected set; }
+
+	[SerializeField] public Vector2 startingPosition;
 
 	/// <summary>
 	/// Awake is called when the script instance is being loaded.

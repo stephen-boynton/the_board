@@ -272,6 +272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 794504258}
   - component: {fileID: 794504259}
+  - component: {fileID: 794504260}
   m_Layer: 0
   m_Name: BattleController
   m_TagString: Untagged
@@ -311,8 +312,22 @@ MonoBehaviour:
   cameraRig: {fileID: 1088477161}
   TeamOne:
   - {fileID: 7954248544705964094, guid: b1e272680a0976f448a47e5e1f6b57b1, type: 3}
+  - {fileID: 4872484458022279090, guid: 44615eda174eb534eada761a7da24117, type: 3}
   TeamTwo: []
+  pieces: []
   currentCell: {fileID: 0}
+--- !u!114 &794504260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794504257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46dea4320b71946319c34c25b4f814b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1088477161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4113702636797234736, guid: 46b896c74036647b2b36d18a6b05b95e,
