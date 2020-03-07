@@ -235,7 +235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCell: {fileID: 0}
   dir: 2
-  MOVEMENT: 3
+  offset: 0
+  MOVEMENT: 5
 --- !u!114 &8446536951164881877
 MonoBehaviour:
   m_ObjectHideFlags: 0

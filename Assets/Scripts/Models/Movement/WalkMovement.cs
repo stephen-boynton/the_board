@@ -17,7 +17,7 @@ public class WalkMovement : Movement
 
   public override IEnumerator Traverse(Cell cell)
   {
-    piece.currentCell = cell;
+    piece.Place(cell);
 
     // Build a list of way points from the piece's 
     // starting cell to the destination cell

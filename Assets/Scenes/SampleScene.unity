@@ -312,6 +312,7 @@ MonoBehaviour:
   TeamOne:
   - {fileID: 7954248544705964094, guid: b1e272680a0976f448a47e5e1f6b57b1, type: 3}
   TeamTwo: []
+  currentCell: {fileID: 0}
 --- !u!1 &1088477161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4113702636797234736, guid: 46b896c74036647b2b36d18a6b05b95e,
@@ -433,21 +434,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4113702636906804397, guid: 46b896c74036647b2b36d18a6b05b95e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.30070576
-      objectReference: {fileID: 0}
-    - target: {fileID: 4113702636906804397, guid: 46b896c74036647b2b36d18a6b05b95e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.953717
-      objectReference: {fileID: 0}
-    - target: {fileID: 4113702636906804397, guid: 46b896c74036647b2b36d18a6b05b95e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46b896c74036647b2b36d18a6b05b95e, type: 3}

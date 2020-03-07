@@ -13,5 +13,6 @@ public class MoveTransitionState : BattleState
   {
     Movement mover = teamOne[0].GetComponent<Movement>();
     yield return StartCoroutine(mover.Traverse(currentCell));
+    owner.ChangeState<SelectPieceState>();
   }
 }

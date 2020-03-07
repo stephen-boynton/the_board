@@ -106,6 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc86bee74a6d49e48f067f51b7bdb72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMaterial: {fileID: 2100000, guid: c66c040a9c693463388537b0e30cc4ee, type: 2}
+  selectMovementMaterial: {fileID: 2100000, guid: 2c9623371405249be822c2b799d40634,
+    type: 2}
+  select_attack: {fileID: 2100000, guid: c66c040a9c693463388537b0e30cc4ee, type: 2}
+  damaged: {fileID: 2100000, guid: c66c040a9c693463388537b0e30cc4ee, type: 2}
   cellHeightOffset: 0
   prev: {fileID: 0}
   distance: 0
