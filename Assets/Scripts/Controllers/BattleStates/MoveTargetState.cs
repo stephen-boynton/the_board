@@ -2,15 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveTargetState : BattleState {
-	List<Cell> cells = new List<Cell> ();
+public class MoveTargetState : BattleState
+{
+  List<Cell> cells = new List<Cell>();
 
-	public override void Enter () {
-		base.Enter ();
-		Debug.Log ("Here we at mofos");
+  public override void Enter()
+  {
+    base.Enter();
+    Debug.Log("Here we at mofos");
 
-		Movement mover = teamOne[0].GetComponent<Movement> ();
-		cells = mover.GetCellsInRange (grid);
-		grid.SelectCells (cells);
-	}
+    Movement mover = teamOne[0].GetComponent<Movement>();
+    cells = mover.GetCellsInRange(grid);
+    grid.SelectCells(cells);
+  }
+
+  protected override void OnKeyBoardMove(object sender, InfoEventArgs<CameraDirection> e)
+  {
+    MoveCamera(e.info);
+  }
+
+  protected override void OnMouseMoveEvent(object sender, InfoEventArgs<Vector3> e)
+  {
+    SelectCell(e.info);
+  }
+
+  protected override void OnFire(object sender, InfoEventArgs<int> e)
+  {
+    if (e.info == 0)
+    {
+      if (cells.Contains(currentCell))
+        owner.ChangeState<MoveTransitionState>();
+    }
+  }
+
+
 }
