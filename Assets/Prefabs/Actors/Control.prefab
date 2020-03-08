@@ -237,9 +237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCell: {fileID: 0}
   dir: 2
-  offset: 0
+  offset: 0.2
   startingPosition: {x: 0, y: 0}
-  MOVEMENT: 5
 --- !u!114 &8446536951164881877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,4 +276,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608b80eb66d1d4451a135b5147cf8553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseStats: 05000000050000000500000005000000050000000500000005000000
+  CTR: 1000
+  SPD: 500

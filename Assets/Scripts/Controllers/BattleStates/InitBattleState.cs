@@ -29,8 +29,9 @@ public class InitBattleState : BattleState {
     foreach (GameObject p in teamOne) {
       GameObject pieceGO = Instantiate (p, transform) as GameObject;
       Piece piece = pieceGO.GetComponent<Piece> ();
-      grid.PlaceInGrid (piece.startingPosition, piece.offset / 2, pieceGO);
-      piece.Place (grid.GetCellByRowAndColumn ((int) piece.startingPosition.x, (int) piece.startingPosition.y));
+      Cell startingCell = grid.GetCellByRowAndColumn ((int) piece.startingPosition.x, (int) piece.startingPosition.y);
+      grid.PlaceInGrid (piece.startingPosition, startingCell.cellHeightOffset / 2, pieceGO);
+      piece.Place (startingCell);
       Role role = piece.transform.GetComponent<Role> ();
       role.LoadStats ();
       pieces.Add (piece);

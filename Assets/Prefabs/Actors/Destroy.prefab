@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCell: {fileID: 0}
   dir: 0
-  offset: 0
+  offset: 0.2
   startingPosition: {x: 1, y: 0}
 --- !u!114 &1846879465353982755
 MonoBehaviour:
@@ -89,7 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608b80eb66d1d4451a135b5147cf8553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseStats: 05000000050000006400000005000000050000000500000005000000
+  CTR: 1000
+  SPD: 500
 --- !u!1 &5910476026468950849
 GameObject:
   m_ObjectHideFlags: 0
