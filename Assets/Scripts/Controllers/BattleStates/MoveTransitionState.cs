@@ -9,7 +9,8 @@ public class MoveTransitionState : BattleState {
 
   IEnumerator Sequence () {
     Movement mover = turn.actor.GetComponent<Movement> ();
+    turn.hasPieceMoved = true;
     yield return StartCoroutine (mover.Traverse (currentCell));
-    owner.ChangeState<SelectPieceState> ();
+    owner.ChangeState<CommandSelectionState> ();
   }
 }

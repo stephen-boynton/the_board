@@ -10,6 +10,9 @@ public abstract class BattleState : State {
   public List<GameObject> teamOne { get { return owner.TeamOne; } }
   public List<Piece> pieces { get { return owner.pieces; } }
   public Turn turn { get { return owner.turn; } }
+  public BattleMenu battleMenu { get { return owner.battleMenu; } }
+  public BattleBanner battleBanner { get { return owner.battleBanner; } }
+  public GameObject cameraRig { get { return owner.cameraRig; } }
   protected virtual void Awake () {
     owner = GetComponent<BattleController> ();
   }
@@ -18,6 +21,7 @@ public abstract class BattleState : State {
     InputController.mouseMoveEvent += OnMouseMoveEvent;
     InputController.keyboardMoveEvent += OnKeyBoardMove;
     InputController.fireEvent += OnFire;
+    ButtonHandler.uiPress += OnUiPress;
   }
 
   protected override void RemoveListeners () {
@@ -38,12 +42,28 @@ public abstract class BattleState : State {
 
   }
 
+  protected virtual void OnUiPress (object sender, InfoEventArgs<BattleActions> e) {
+
+  }
+
   protected virtual void OnMouseMoveEvent (object sender, InfoEventArgs<Vector3> e) {
 
   }
 
   protected virtual void SelectCell (Vector3 pos) {
     Cell hoveredCell = grid.GetCellByWorldLocation (pos);
+    if (hoveredCell != currentCell) {
+      currentCell = hoveredCell;
+      selector.transform.position = new Vector3 (
+        currentCell.center.x,
+        currentCell.cellHeightOffset + selector.GetComponent<CellSelector> ().visualOffset,
+        currentCell.center.y
+      );
+    }
+  }
+
+  protected virtual void SelectCell (PositionId pos) {
+    Cell hoveredCell = grid.GetCellByPositionId (pos);
     if (hoveredCell != currentCell) {
       currentCell = hoveredCell;
       selector.transform.position = new Vector3 (
@@ -64,5 +84,11 @@ public abstract class BattleState : State {
       owner.cameraRig.transform.Translate (Vector3.left * Time.deltaTime * 20, Space.Self);
     else if (pos == CameraDirection.right)
       owner.cameraRig.transform.Translate (-Vector3.left * Time.deltaTime * 20, Space.Self);
+  }
+
+  protected virtual void SetCamera (PositionId pos) {
+    Cell cell = grid.GetCellByPositionId (pos);
+    Vector3 center = new Vector3 (cell.center.x, 0, cell.center.y);
+    cameraRig.transform.position = center;
   }
 }

@@ -1,21 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveTargetState : BattleState {
-  List<Cell> cells = new List<Cell> ();
+public class ExploreState : BattleState {
 
   public override void Enter () {
     base.Enter ();
-    Movement mover = turn.actor.GetComponent<Movement> ();
-    cells = mover.GetCellsInRange (grid);
-    grid.SelectCells (cells);
-  }
-
-  public override void Exit () {
-    base.Exit ();
-    grid.DeSelectCells (cells);
-    cells = null;
   }
 
   protected override void OnKeyBoardMove (object sender, InfoEventArgs<CameraDirection> e) {
@@ -28,8 +18,14 @@ public class MoveTargetState : BattleState {
 
   protected override void OnFire (object sender, InfoEventArgs<int> e) {
     if (e.info == 0) {
-      if (cells.Contains (currentCell))
-        owner.ChangeState<MoveTransitionState> ();
+      if (currentCell.occupant == turn.actor.gameObject)
+        owner.ChangeState<CommandSelectionState> ();
+    }
+
+    if (e.info == 1) {
+      SelectCell (turn.actor.currentCell.positionId);
+      SetCamera (turn.actor.currentCell.positionId);
+      owner.ChangeState<CommandSelectionState> ();
     }
   }
 

@@ -14,7 +14,8 @@ public class SelectPieceState : BattleState {
   IEnumerator ChangeCurrentUnit () {
     owner.round.MoveNext ();
     SelectCell (turn.actor.currentCell.transform.position);
+    SetCamera (turn.actor.currentCell.positionId);
     yield return null;
-    owner.ChangeState<MoveTargetState> ();
+    owner.ChangeState<CommandSelectionState> ();
   }
 }

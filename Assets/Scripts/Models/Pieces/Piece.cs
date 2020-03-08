@@ -7,8 +7,7 @@ public abstract class Piece : MonoBehaviour {
 	public Cell currentCell;
 	public Directions dir = Directions.North;
 	public float offset;
-	public virtual int CTR { get; protected set; }
-	public virtual int SPEED { get; protected set; }
+	public virtual string DisplayName { get; protected set; }
 
 	[SerializeField] public Vector2 startingPosition;
 

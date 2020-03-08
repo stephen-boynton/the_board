@@ -11,6 +11,8 @@ public class InitBattleState : BattleState {
   IEnumerator Init () {
     SpawnSelector ();
     SpawnUnits ();
+    battleMenu.Hide ();
+    battleBanner.Hide ();
     owner.round = owner.gameObject.AddComponent<TurnOrderController> ().Round ();
     yield return null;
     owner.ChangeState<SelectPieceState> ();

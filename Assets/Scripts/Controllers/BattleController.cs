@@ -6,6 +6,8 @@ public class BattleController : StateMachine {
   public GridManager grid;
   [SerializeField] public GameObject selector;
   [SerializeField] public GameObject cameraRig;
+  [SerializeField] public BattleMenu battleMenu;
+  [SerializeField] public BattleBanner battleBanner;
   [SerializeField] public List<GameObject> TeamOne = new List<GameObject> ();
   [SerializeField] public List<GameObject> TeamTwo = new List<GameObject> ();
   public List<Piece> pieces = new List<Piece> ();
