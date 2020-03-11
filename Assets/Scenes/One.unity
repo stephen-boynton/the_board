@@ -776,6 +776,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CellPrefab: {fileID: 5984979315981583339, guid: 2d3811d2121e94e449c03ff6bce1af97,
     type: 3}
+  CellSizes:
+  - {fileID: 5984979315981583339, guid: 2d3811d2121e94e449c03ff6bce1af97, type: 3}
+  - {fileID: 6475040607293451869, guid: 35da622c40462415fa11dfa8d7a515bf, type: 3}
+  - {fileID: 3321231776630105048, guid: c875bbc9897b84ba789dd835b7254cad, type: 3}
+  - {fileID: 1256070232362087633, guid: 7a4df5f4b9fee4355995773155fc3209, type: 3}
+  - {fileID: 1575720357820619957, guid: a148fdeeddd044775bd9c8d18add0944, type: 3}
+  - {fileID: 4776728713035798570, guid: a17e964be92084972980cb0130ace5cb, type: 3}
   gridSize: 50
 --- !u!4 &1911630975
 Transform:

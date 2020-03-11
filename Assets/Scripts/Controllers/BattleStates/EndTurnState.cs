@@ -1,24 +1,27 @@
 using System.Collections;
 using UnityEngine;
 
-public class EndTurnState : BattleState {
+public class EndTurnState : BattleState
+{
   Directions startDir;
 
-  public override void Enter () {
-    base.Enter ();
-    SelectCell (turn.actor.currentCell.positionId);
-    SetCamera (turn.actor.currentCell.positionId);
+  public override void Enter()
+  {
+    base.Enter();
+    SelectCell(turn.actor.currentCell.positionId);
+    SetCamera(turn.actor.currentCell.positionId);
   }
 
-  protected override void OnFire (object sender, InfoEventArgs<int> e) {
-    Debug.Log ("FIRING");
-    switch (e.info) {
+  protected override void OnFire(object sender, InfoEventArgs<int> e)
+  {
+    switch (e.info)
+    {
       case 0:
-        owner.ChangeState<SelectPieceState> ();
+        owner.ChangeState<SelectPieceState>();
         break;
       case 1:
         turn.actor.dir = startDir;
-        owner.ChangeState<CommandSelectionState> ();
+        owner.ChangeState<CommandSelectionState>();
         break;
     }
   }

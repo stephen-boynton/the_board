@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Movement : MonoBehaviour {
-    public int range = 3;
     protected Piece piece;
+    public int range { get { return stats[StatTypes.MOV]; } }
+    public int jumpHeight { get { return stats[StatTypes.JMP]; } }
+    protected Transform jumper;
+    protected Stats stats;
 
     protected virtual void Awake () {
         piece = GetComponent<Piece> ();
-        Debug.Log (piece);
+        jumper = transform.Find ("Jumper");
+    }
+
+    protected virtual void Start () {
+        stats = GetComponent<Stats> ();
     }
 
     public virtual List<Cell> GetCellsInRange (GridManager grid) {
@@ -19,7 +26,6 @@ public abstract class Movement : MonoBehaviour {
 
     public abstract IEnumerator Traverse (Cell cell);
 
-    #region Protected
     protected virtual bool ExpandSearch (Cell from, Cell to) {
         return (from.distance + 1) <= range;
     }
@@ -45,5 +51,5 @@ public abstract class Movement : MonoBehaviour {
         while (t != null)
             yield return null;
     }
-    #endregion
+
 }
