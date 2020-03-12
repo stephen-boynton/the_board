@@ -72,7 +72,8 @@ public class GridManager : MonoBehaviour
   private void SpawnCell(int i, int j)
   {
     Vector3 center = GetCellCenter(i, j);
-    int height = (int)Math.Round(UnityEngine.Random.Range(0.0f, 1.0f));
+
+    int height = 0;
 
     GameObject cell = Instantiate(CellSizes[height]);
     Cell cellComp = cell.AddComponent<Cell>();

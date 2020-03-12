@@ -36,7 +36,7 @@ public class InitBattleState : BattleState
       GameObject pieceGO = Instantiate(p, transform) as GameObject;
       Piece piece = pieceGO.GetComponent<Piece>();
       Cell startingCell = grid.GetCellByRowAndColumn((int)piece.startingPosition.x, (int)piece.startingPosition.y);
-      grid.PlaceInGrid(piece.startingPosition, startingCell.heightOffset / 2, pieceGO);
+      grid.PlaceInGrid(piece.startingPosition, piece.offset * 2, pieceGO);
       piece.Place(startingCell);
       Role role = piece.transform.GetComponent<Role>();
       role.LoadStats();

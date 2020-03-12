@@ -34,7 +34,7 @@ public class LeapMovement : Movement
 
     // Land
     duration = (y - cell.center.y) * 0.5f;
-    Vector3 toLand = new Vector3(0, cell.heightOffset, 0);
+    Vector3 toLand = new Vector3(0, (piece.offset * 2) + cell.heightOffset, 0);
     tweener = jumper.MoveToLocal(toLand, 0.5f, EasingEquations.EaseInOutQuad);
     while (tweener != null)
       yield return null;
