@@ -11,7 +11,7 @@ public class MoveTargetState : BattleState
     base.Enter();
     Movement mover = turn.actor.GetComponent<Movement>();
     cells = mover.GetCellsInRange(grid);
-    grid.SelectCells(cells);
+    grid.SelectCells(cells, SelectionTypes.Move);
   }
 
   public override void Exit()
@@ -36,7 +36,7 @@ public class MoveTargetState : BattleState
     if (e.info == 0)
     {
       if (cells.Contains(currentCell))
-        owner.ChangeState<MoveTransitionState>();
+        owner.ChangeState<ConfirmMoveState>();
     }
   }
 

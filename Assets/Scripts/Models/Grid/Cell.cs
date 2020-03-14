@@ -6,7 +6,8 @@ public class Cell : MonoBehaviour
 {
   [SerializeField] public Material defaultMaterial;
   [SerializeField] public Material selectMovementMaterial;
-  [SerializeField] public Material select_attack;
+  [SerializeField] public Material selectAttackMaterial;
+  [SerializeField] public Material selectConfirmMaterial;
   [SerializeField] public Material damaged;
   public static float STEP_HEIGHT = 0.2f;
   public Vector2 center { get; set; }
@@ -30,9 +31,19 @@ public class Cell : MonoBehaviour
     return MyUtility.Vect2GreaterThanEqualTo(pos, lowerBounds) && MyUtility.Vect2LessThanEqualTo(pos, upperBounds);
   }
 
-  public void ChangeSelectable()
+  public void ChangeMoveSelectable()
   {
     transform.GetComponent<Renderer>().material = selectMovementMaterial;
+  }
+
+  public void ChangeAttackSelectable()
+  {
+    transform.GetComponent<Renderer>().material = selectAttackMaterial;
+  }
+
+  public void ChangeConfirmSelectable()
+  {
+    transform.GetComponent<Renderer>().material = selectConfirmMaterial;
   }
 
   public void ChangeDefault()

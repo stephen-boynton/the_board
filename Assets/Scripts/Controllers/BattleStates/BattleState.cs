@@ -13,6 +13,7 @@ public abstract class BattleState : State
   public Turn turn { get { return owner.turn; } }
   public BattleMenu battleMenu { get { return owner.battleMenu; } }
   public BattleBanner battleBanner { get { return owner.battleBanner; } }
+  public AbilityPanel abilityPanel { get { return owner.abilityPanel; } }
   public GameObject cameraRig { get { return owner.cameraRig; } }
   protected virtual void Awake()
   {
@@ -32,6 +33,7 @@ public abstract class BattleState : State
     InputController.mouseMoveEvent -= OnMouseMoveEvent;
     InputController.keyboardMoveEvent -= OnKeyBoardMove;
     InputController.fireEvent -= OnFire;
+    ButtonHandler.uiPress -= OnUiPress;
   }
 
   public override void Enter()

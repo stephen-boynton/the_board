@@ -10,6 +10,10 @@ public class GridManager : MonoBehaviour
   [SerializeField] GameObject CellPrefab;
   [SerializeField] GameObject[] CellSizes;
   [SerializeField] int gridSize = 8;
+  public PositionId min { get { return _min; } }
+  public PositionId max { get { return _max; } }
+  PositionId _min;
+  PositionId _max;
   private int END_ROW;
 
   PositionId[] dirs = new PositionId[4] {
@@ -60,6 +64,10 @@ public class GridManager : MonoBehaviour
 
   private void SpawnAllCells()
   {
+
+    _min = new PositionId(0, 0);
+    _max = new PositionId(gridSize, gridSize);
+
     for (int i = 0; i < gridSize; i++)
     {
       for (int j = 0; j < gridSize; j++)
@@ -76,7 +84,7 @@ public class GridManager : MonoBehaviour
     int height = 0;
 
     GameObject cell = Instantiate(CellSizes[height]);
-    Cell cellComp = cell.AddComponent<Cell>();
+    Cell cellComp = cell.GetComponent<Cell>();
 
     cell.transform.position = new Vector3(
       center.x,
@@ -89,8 +97,6 @@ public class GridManager : MonoBehaviour
     cellComp.lowerBounds = new Vector2(i, j);
     cellComp.upperBounds = new Vector2(i + CELL_SIZE, j + CELL_SIZE);
     cellComp.positionId = new PositionId(i, j);
-    cellComp.defaultMaterial = CellPrefab.GetComponent<Cell>().defaultMaterial;
-    cellComp.selectMovementMaterial = CellPrefab.GetComponent<Cell>().selectMovementMaterial;
 
     // Add references where appropriate
     Cells.Add(cellComp.positionId, cellComp);
@@ -211,10 +217,19 @@ public class GridManager : MonoBehaviour
     b = temp;
   }
 
-  public void SelectCells(List<Cell> cells)
+  public void SelectCells(List<Cell> cells, SelectionTypes type)
   {
     for (int i = cells.Count - 1; i >= 0; --i)
-      cells[i].ChangeSelectable();
+    {
+      if (type == SelectionTypes.Move)
+        cells[i].ChangeMoveSelectable();
+
+      if (type == SelectionTypes.Attack)
+        cells[i].ChangeAttackSelectable();
+
+      if (type == SelectionTypes.Confirm)
+        cells[i].ChangeConfirmSelectable();
+    }
   }
 
   public void DeSelectCells(List<Cell> cells)

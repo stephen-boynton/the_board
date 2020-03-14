@@ -109,9 +109,10 @@ MonoBehaviour:
   defaultMaterial: {fileID: 2100000, guid: c66c040a9c693463388537b0e30cc4ee, type: 2}
   selectMovementMaterial: {fileID: 2100000, guid: 2c9623371405249be822c2b799d40634,
     type: 2}
-  select_attack: {fileID: 2100000, guid: c66c040a9c693463388537b0e30cc4ee, type: 2}
+  selectAttackMaterial: {fileID: 2100000, guid: 0f10cd6eb7d034793add517d380bbafe,
+    type: 2}
+  selectConfirmMaterial: {fileID: 2100000, guid: b5c063079700f420a8a97000e68b20d3,
+    type: 2}
   damaged: {fileID: 2100000, guid: c66c040a9c693463388537b0e30cc4ee, type: 2}
-  tileHeight: 1.1
-  prefabInstances: []
   prev: {fileID: 0}
   distance: 0

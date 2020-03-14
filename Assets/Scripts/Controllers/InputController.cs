@@ -15,16 +15,6 @@ public class InputController : MonoBehaviour
 
   void Update()
   {
-    // int x = _hor.Update();
-    // int y = _ver.Update();
-    // if (x != 0 || y != 0)
-    // {
-    //     if (keyboardMoveEvent != null)
-    //     {
-    //         keyboardMoveEvent(this, new InfoEventArgs<Vector3>(new Vector3(x, 0, y)));
-    //     }
-    // }
-
     int forward = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
     int strafe = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
     if (forward > 0)

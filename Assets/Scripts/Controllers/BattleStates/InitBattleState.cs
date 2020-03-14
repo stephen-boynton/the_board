@@ -16,6 +16,7 @@ public class InitBattleState : BattleState
     SpawnUnits();
     battleMenu.Hide();
     battleBanner.Hide();
+    abilityPanel.Hide();
     owner.round = owner.gameObject.AddComponent<TurnOrderController>().Round();
     yield return null;
     owner.ChangeState<SelectPieceState>();

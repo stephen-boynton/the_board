@@ -8,7 +8,7 @@ public class WalkMovement : Movement
   protected override bool ExpandSearch(Cell from, Cell to)
   {
 
-    // Skip if the distance in height between the two tiles is more than the unit can jump
+    // Skip if the distance in height between the two tiles is more than the piece can jump
     if ((Mathf.Abs(from.height - to.height) > jumpHeight))
       return false;
 

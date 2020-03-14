@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turn {
+public class Turn
+{
   public Piece actor;
   public bool hasPieceMoved;
   public bool hasPieceActed;
   public bool lockMove;
   public List<Cell> targets;
+  public Ability ability;
   Cell startTile;
   Directions startDir;
 
-  public void Change (Piece current) {
+  public void Change(Piece current)
+  {
     actor = current;
     hasPieceMoved = false;
     hasPieceActed = false;
@@ -20,10 +23,11 @@ public class Turn {
     startDir = actor.dir;
   }
 
-  public void UndoMove () {
+  public void UndoMove()
+  {
     hasPieceMoved = false;
-    actor.Place (startTile);
+    actor.Place(startTile);
     actor.dir = startDir;
-    actor.Match ();
+    actor.Match();
   }
 }
